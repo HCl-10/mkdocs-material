@@ -178,7 +178,8 @@
                 {% endblock %}
               {% endblock %}
               {% block disqus %}
-                {% include "partials/integrations/disqus.html" %}
+              <h2>评论</h1>
+              <div id="gitalk-container"></div>
               {% endblock %}
             </article>
           </div>
@@ -221,6 +222,21 @@
             worker: "{{ 'assets/javascripts/worker/search.9c0e82ba.min.js' | url }}"
           }, typeof search !== "undefined" && search)
         })
+      </script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+      <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+      <script>
+        var gitalk = new Gitalk({
+          clientID: '0f0ba459a62da9e2609e',
+          clientSecret: 'd52cfc833145f536816616db6a13a0998c2a916e',
+          repo: 'chaoli-books',
+          owner: 'HCl-10',
+          admin: ['HCl-10'],
+          id: location.pathname,
+        })
+
+        gitalk.render('gitalk-container');
+
       </script>
       {% for path in config["extra_javascript"] %}
         <script src="{{ path | url }}"></script>
